@@ -14,7 +14,7 @@ const Dashboard = () => {
         <Header />
 
         {/* Dynamically Render Child Components */}
-        <main className="flex-1 bg-white dark:bg-[#1F2937] p-4">
+        <main className="flex-1 bg-[#F9FAFC] dark:bg-[#1F2937] p-4">
           <Outlet />
         </main>
       </div>

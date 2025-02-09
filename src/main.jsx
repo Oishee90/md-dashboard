@@ -5,14 +5,17 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Dashboard from './Component/Dashboard/Dashboard';
+;
+
 import ManageSubscription from './Component/Components/ManageSubscription';
+import Dashboards from './Component/Components/Dashmain/Dashboards';
+import Root from './Component/Dashboard/Root';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Dashboard></Dashboard>, children: [
-      { path: 'managesubscription', element: <ManageSubscription></ManageSubscription> },
+    element: <Root></Root>, children: [
+      { path: 'dashboards', element: <Dashboards></Dashboards> },
       { path: 'managesubscription', element: <ManageSubscription></ManageSubscription> },
       { path: 'managesubscription', element: <ManageSubscription></ManageSubscription> },
       { path: 'managesubscription', element: <ManageSubscription></ManageSubscription> },
