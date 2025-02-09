@@ -49,7 +49,7 @@ const SubscriberTable = () => {
       };
     
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto overflow-y-auto bg-white">
       <table className="min-w-full ">
         <thead>
           <tr className="">

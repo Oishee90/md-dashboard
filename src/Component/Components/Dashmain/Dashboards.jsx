@@ -4,7 +4,31 @@ import { BiTrendingUp } from "react-icons/bi";
 import { CiBag1 } from "react-icons/ci";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, AreaChart, Area, ResponsiveContainer } from "recharts";
 import SubscriberTable from "./SubscriberTable";
+import { CiSearch } from "react-icons/ci";
+import { useEffect, useRef, useState } from "react";
+import { IoChevronDownOutline } from "react-icons/io5";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 const Dashboards = () => {
+  const [query, setQuery] = useState("");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [open, setOpen] = useState(false);
+  const pickerRef = useRef(null);
+
+  // Close date picker when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (pickerRef.current && !pickerRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
     const subscriberData = [
         { month: "Jan", value: 90 },
         { month: "Feb", value: 70 },
@@ -52,10 +76,11 @@ const Dashboards = () => {
     return (
         <div className="flex min-h-screen  flex-col  ">
             {/* chartsss */}
-            <div className="bg-white px-7 py-7">
+            <div className=" bg-white">
+            <div className="px-7 py-7">
                 <div className="grid grid-cols-3 gap-4">
                     {/* card-1 */}
-                    <div className=" px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                    <div className=" px-6 py-12 bg-white rounded-lg shadow-2xl dark:bg-gray-800">
                         <div className="flex items-center justify-around">
                             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
                                 <path d="M26.8315 16.3456C28.924 16.0516 30.535 14.2576 30.5395 12.0841C30.5395 9.94208 28.978 8.16608 26.9305 7.83008" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -75,7 +100,7 @@ const Dashboards = () => {
                     </div>
 
                     {/* card-2 */}
-                    <div className=" px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                    <div className=" px-6 py-12 bg-white rounded-lg shadow-2xl dark:bg-gray-800">
                         <div className="flex items-center justify-around">
                         <LuUsersRound className="w-8 h-7" />
 
@@ -89,7 +114,7 @@ const Dashboards = () => {
 
                     </div>
                     {/* card-3 */}
-                    <div className=" px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                    <div className=" px-6 py-12 bg-white rounded-lg shadow-2xl dark:bg-gray-800">
                         <div className="flex items-center justify-around">
                         <CiBag1 className="w-8 h-7" />
 
@@ -109,9 +134,20 @@ const Dashboards = () => {
             {/* rechart */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
       {/* Subscriber Growth Chart */}
-      <div className="bg-white p-4 rounded-xl shadow-md ">
+      <div className="bg-white p-4 rounded-xl shadow-xl shadow-gray-300 ">
       <div className="mb-7 px-3 py-3">
-      <h2 className="text-lg font-bold  text-[#0B1826] ">Subscriber Growth</h2>
+
+      <div className="flex justify-between items-center gap-5">
+        <h2 className="text-lg font-bold  text-[#0B1826] ">Subscriber Growth</h2>
+        <div className="relative w-fit bg-[#F8F8F8] rounded-lg flex items-center px-4 py-2 border border-[#E2E2E2]">
+      <select className="bg-[#F8F8F8] text-[#595D62] text-sm pl-2 pr-6 py-1 cursor-pointer outline-none appearance-none">
+        <option value="All">Yearly</option>
+        <option value="Pin">Pin Plans</option>
+        <option value="Save">Save Plans</option>
+      </select>
+      <IoChevronDownOutline className="absolute right-2 text-[#000000] w-4 h-4 pointer-events-none" />
+    </div>
+    </div>
       
       </div>  
         <ResponsiveContainer width="100%" height={200}>
@@ -125,10 +161,20 @@ const Dashboards = () => {
       </div>
 
       {/* User Growth Chart */}
-      <div className="bg-white p-4 rounded-xl shadow-md">
+      <div className="bg-white p-4 rounded-xl shadow-xl shadow-gray-300 ">
       <div className="mb-7  px-3 py-3">
+ 
+      <div className="flex justify-between items-center gap-5">
       <h2 className="text-lg font-bold  text-[#0B1826] ">User Growth</h2>
-      
+        <div className="relative w-fit bg-[#F8F8F8] rounded-lg flex items-center px-4 py-2 border border-[#E2E2E2]">
+      <select className="bg-[#F8F8F8] text-[#595D62] text-sm pl-2 pr-6 py-1 cursor-pointer outline-none appearance-none">
+        <option value="All">Yearly</option>
+        <option value="Pin">Pin Plans</option>
+        <option value="Save">Save Plans</option>
+      </select>
+      <IoChevronDownOutline className="absolute right-2 text-[#000000] w-4 h-4 pointer-events-none" />
+    </div>
+    </div>
       </div>
   
         <ResponsiveContainer width="100%" height={200}>
@@ -143,7 +189,17 @@ const Dashboards = () => {
 
       {/* Income Report Chart */}
       <div className="col-span-1 md:col-span-2 bg-white p-4 rounded-xl shadow-md">
+        <div className="flex justify-between items-center gap-5">
         <h2 className="text-lg font-semibold mb-2">Income Report</h2>
+        <div className="relative w-fit bg-[#F8F8F8] rounded-lg flex items-center px-4 py-2 border border-[#E2E2E2]">
+      <select className="bg-[#F8F8F8] text-[#595D62] text-sm pl-2 pr-6 py-1 cursor-pointer outline-none appearance-none">
+        <option value="All">Yearly</option>
+        <option value="Pin">Pin Plans</option>
+        <option value="Save">Save Plans</option>
+      </select>
+      <IoChevronDownOutline className="absolute right-2 text-[#000000] w-4 h-4 pointer-events-none" />
+    </div>
+    </div>
         <ResponsiveContainer width="100%" height={250}>
           <AreaChart data={incomeData}>
             <XAxis dataKey="month" />
@@ -154,9 +210,80 @@ const Dashboards = () => {
         </ResponsiveContainer>
       </div>
     </div>
+    </div>
             {/* user information */}
-            <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Subscriber List</h1>
+            <div className="p-4 mt-7 bg-white">
+    <div className="flex items-center justify-between"> <h1 className="text-2xl font-bold mb-4">Subscriber List</h1>
+      <div className="p-4  ">
+      <div className="flex gap-6 items-center">
+        {/* Search Bar */}
+        <div className="relative w-full max-w-md bg-[#F8F8F8] text-[#595D62]">
+      <input
+        type="text"
+        placeholder="Search..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        className="w-full px-10 py-2 border border-[#E2E2E2] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      {/* Search Icon (Only show when input is empty) */}
+      {!query && (
+        <div className="absolute inset-y-0 left-3 flex items-center text-[#595D62]">
+          <CiSearch className="w-5 h-5" />
+        </div>
+      )}
+    </div>
+
+        {/* Date Range Picker */}
+        <div className="flex items-center space-x-4">
+        <div className="relative w-fit bg-[#F8F8F8] rounded-lg flex items-center px-4 py-2 border border-[#E2E2E2]">
+      <select className="bg-[#F8F8F8] text-[#595D62] text-sm pl-2 pr-6 py-1 cursor-pointer outline-none appearance-none">
+        <option value="All">Subscriber</option>
+        <option value="Pin">Pin Plans</option>
+        <option value="Save">Save Plans</option>
+      </select>
+      <IoChevronDownOutline className="absolute right-2 text-[#000000] w-4 h-4 pointer-events-none" />
+    </div>
+    {/* calender */}
+    <div className="relative" ref={pickerRef}>
+      {/* Clickable Div */}
+      <div
+        onClick={() => setOpen(!open)}
+        className="w-fit bg-[#F8F8F8] rounded-lg flex items-center gap-3 px-4 py-2 border border-[#E2E2E2] cursor-pointer"
+      >
+        <FaRegCalendarAlt className="text-[#595D62] w-4 h-4 pointer-events-none" />
+        <h1 className="whitespace-nowrap text-[#595D62] py-1 text-sm">
+          {startDate && endDate
+            ? `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`
+            : "Starting - Ending"}
+        </h1>
+        <IoChevronDownOutline className="text-[#000000] w-4 h-4 pointer-events-none" />
+      </div>
+
+      {/* Date Picker (Only shows when `open === true`) */}
+      {open && (
+        <div className="absolute calender right-[50%] mt-2 z-50 bg-white shadow-lg border border-gray-300 rounded-lg">
+          <DatePicker
+            selected={startDate}
+            onChange={(dates) => {
+              const [start, end] = dates;
+              setStartDate(start);
+              setEndDate(end);
+              if (end) setOpen(false); // Close when date is selected
+            }}
+            startDate={startDate}
+            endDate={endDate}
+            selectsRange
+            monthsShown={2} // Show 2 months
+            inline
+            className="p-2"
+            calendarClassName="gap-4 p-4 " // 👈 THIS MAKES MONTHS SHOW IN A ROW
+          />
+        </div>
+      )}
+    </div>
+        </div>
+      </div>
+    </div> </div> 
       <SubscriberTable></SubscriberTable>
     </div>
             <div>

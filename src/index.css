@@ -7,3 +7,7 @@
 .open-sns {
     font-family: "Open Sans", serif;
 }
+.calender .react-datepicker{
+ display: flex !important;
+ align-items: start !important;
+}
