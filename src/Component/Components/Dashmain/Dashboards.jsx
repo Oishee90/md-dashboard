@@ -29,6 +29,9 @@ const Dashboards = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+
+
     const subscriberData = [
         { month: "Jan", value: 90 },
         { month: "Feb", value: 70 },
@@ -73,8 +76,10 @@ const Dashboards = () => {
         { month: "Nov", value: 24000 },
         { month: "Dec", value: 20000 }
       ];
+
+      
     return (
-        <div className="flex min-h-screen  flex-col  ">
+        <div className="flex min-h-screen container mx-auto  flex-col  ">
             {/* chartsss */}
             <div className=" bg-white">
             <div className="px-7 py-7">
@@ -189,13 +194,13 @@ const Dashboards = () => {
 
       {/* Income Report Chart */}
       <div className="col-span-1 md:col-span-2 bg-white p-4 rounded-xl shadow-md">
-        <div className="flex justify-between items-center gap-5">
+        <div className="flex justify-between items-center gap-5 px-3 py-3">
         <h2 className="text-lg font-semibold mb-2">Income Report</h2>
         <div className="relative w-fit bg-[#F8F8F8] rounded-lg flex items-center px-4 py-2 border border-[#E2E2E2]">
       <select className="bg-[#F8F8F8] text-[#595D62] text-sm pl-2 pr-6 py-1 cursor-pointer outline-none appearance-none">
         <option value="All">Yearly</option>
-        <option value="Pin">Pin Plans</option>
-        <option value="Save">Save Plans</option>
+        <option value="Pin">2024</option>
+        <option value="Save">2025</option>
       </select>
       <IoChevronDownOutline className="absolute right-2 text-[#000000] w-4 h-4 pointer-events-none" />
     </div>
@@ -213,7 +218,7 @@ const Dashboards = () => {
     </div>
             {/* user information */}
             <div className="p-4 mt-7 bg-white">
-    <div className="flex items-center justify-between"> <h1 className="text-2xl font-bold mb-4">Subscriber List</h1>
+    <div className="flex items-center justify-between px-3 py-3"> <h1 className="text-2xl font-bold mb-4">Subscriber List</h1>
       <div className="p-4  ">
       <div className="flex gap-6 items-center">
         {/* Search Bar */}
@@ -263,6 +268,7 @@ const Dashboards = () => {
       {open && (
         <div className="absolute calender right-[50%] mt-2 z-50 bg-white shadow-lg border border-gray-300 rounded-lg">
           <DatePicker
+               showIcon
             selected={startDate}
             onChange={(dates) => {
               const [start, end] = dates;
@@ -273,10 +279,11 @@ const Dashboards = () => {
             startDate={startDate}
             endDate={endDate}
             selectsRange
-            monthsShown={2} // Show 2 months
+            monthsShown={1} // Show 2 months
             inline
             className="p-2"
             calendarClassName="gap-4 p-4 " // 👈 THIS MAKES MONTHS SHOW IN A ROW
+           
           />
         </div>
       )}
