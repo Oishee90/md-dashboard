@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GoPlus } from "react-icons/go";
 const Addquestion = ( {onClose}) => {
       const [name, setName] = useState("");
+      const [questions, setQuestions] = useState("");
     return (
         <div className="fixed inset-0 bg-black/10 backdrop-blur-sm flex items-center justify-center">
         <div className="relative bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
@@ -33,8 +34,8 @@ const Addquestion = ( {onClose}) => {
           <input
             type="text"
             placeholder="Add more questions"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={questions}
+            onChange={(e) => setQuestions(e.target.value)}
             className="w-full p-2 border rounded-lg mb-4 mt-3 border-[#E2E2E2] placeholder:text-[#E2E2E2]"
           />
           <GoPlus className="absolute top-[35%] right-[3%] w-[35px] h-[24px] text-[#8CAB91]" />

@@ -1,11 +1,13 @@
 import { MdArrowBack } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import BookDetails from "./BookDetails";
 
 const OrderDetails = () => {
-
+  const navigate = useNavigate();
   const user = {
     name: "Dindiniya",
-    img: "https://res.cloudinary.com/dhlgk023u/image/upload/v1738496016/9334243_puz7m4.jpg" ,
+    img: "https://res.cloudinary.com/dhlgk023u/image/upload/v1738496016/9334243_puz7m4.jpg",
     email: "mahmud@gmail.com",
     contactNumber: "+919355574544",
     dob: "17 Dec, 2024",
@@ -13,12 +15,14 @@ const OrderDetails = () => {
     address: "68/ Joker Vila, Gotham City",
     collection: [
       {
+        id: "1", // Add unique string id
         title: "My Life",
         orderDate: "05/12/2024",
         image:
           "https://res.cloudinary.com/dhlgk023u/image/upload/v1739246667/Group_1000004213_txfpvv.png",
       },
       {
+        id: "2",
         title: "My Life",
         orderDate: "05/12/2024",
         image:
@@ -121,7 +125,7 @@ const OrderDetails = () => {
                     Order Date: <span className="text-[#707070]">{book.orderDate}</span>
                   </p>
                   <div className="mt-2 flex flex-col gap-1">
-                    <button className="bg-[#8CAB91] whitespace-nowrap  text-[#FAF1E6] px-3 py-1 rounded-full text-xs">
+                    <button   onClick={() => navigate(`/order-details/${book.id}`) } className="bg-[#8CAB91] whitespace-nowrap cursor-pointer  text-[#FAF1E6] px-3 py-1 rounded-full text-xs">
                       VIEW BOOK
                     </button>
                     <button className="border border-[#8CAB91] text-[#8CAB91] whitespace-nowrap  font-bold px-3 py-1 rounded-full text-xs">
@@ -129,11 +133,14 @@ const OrderDetails = () => {
                     </button>
                   </div>
                 </div>
+                    
               ))}
             </div>
           </div>
         </div>
       </div>
+  
+ 
     </div>
   );
 };

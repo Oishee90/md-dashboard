@@ -5,10 +5,12 @@ import { AiOutlineDelete, AiOutlinePlus } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
 import AddSection from "./AddSection";
 import EditSection from "./EditSection";
+import Delete from "../MakeAdmin/Delete";
 
 const Question = () => {
   const [openModal, setOpenModal] = useState("");
   const [selectedSection, setSelectedSection] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
   const navigate = useNavigate(); // ✅ Initialize navigation
 
   // 🔹 Dummy Data (API theke ashte pare)
@@ -18,9 +20,10 @@ const Question = () => {
     { id: 3, name: "Career", totalQuestions: 20, addedQuestions: 12 },
   ];
 
-  const toggleModal = (modalName, section = null) => {
+  const toggleModal = (modalName, section, id = null) => {
     setOpenModal(openModal === modalName ? "" : modalName);
     setSelectedSection(section);
+    setSelectedId(id)
   };
 
   return (
@@ -56,7 +59,7 @@ const Question = () => {
                 onClick={() => navigate(`/question/${section.id}`)} 
                 className="w-[24px] h-[24px] font-normal text-[#8CAB91] cursor-pointer"
               />
-              <AiOutlineDelete className="w-[24px] h-[24px] font-normal text-[#8CAB91]" />
+              <AiOutlineDelete onClick={() => toggleModal("delete", section.id)} className="w-[24px] h-[24px] font-normal cursor-pointer text-[#8CAB91]" />
               <FaRegEdit
                 onClick={() => toggleModal("edit", section)}
                 className="w-[24px] h-[24px] font-normal text-[#8CAB91] cursor-pointer"
@@ -71,8 +74,10 @@ const Question = () => {
         <>
           {openModal === "add" && <AddSection onClose={() => setOpenModal("")} />}
           {openModal === "edit" && <EditSection section={selectedSection} onClose={() => setOpenModal("")} />}
+          {openModal === "delete" &&  <Delete id={selectedId} onClose={() => setOpenModal("")}></Delete> }
         </>
       )}
+  
     </div>
   );
 };

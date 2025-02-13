@@ -1,4 +1,5 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
     return (
@@ -8,6 +9,7 @@ const Header = () => {
   
         {/* Profile Section */}
         <div className="flex justify-around items-center  gap-4">
+            <NavLink to="/notification">
             <div className="relative">
             <div className="rounded-full bg-gray-200 px-3 py-3">
        <IoMdNotificationsOutline className="text-xl" />
@@ -15,9 +17,9 @@ const Header = () => {
        </div>
         <div className="absolute rounded-full bg-green-400 px-2 py-1 text-[10px] top-[-7%] right-[-10%]">
        1
-       </div></div>
+       </div></div> </NavLink>
      
-          <div
+        <NavLink to="/profile">  <div
             className="flex items-center space-x-9 cursor-pointer"
             // onClick={toggleDropdown}
           >
@@ -36,6 +38,7 @@ const Header = () => {
                {/* <FaChevronDown className="text-[#000000] dark:text-white w-[20px] h-[20px]" /> */}
             </div>
           </div>
+          </NavLink>
   
           {/* Dropdown Menu */}
           {/* {isDropdownOpen && (

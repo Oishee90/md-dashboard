@@ -1,11 +1,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "react-quill/dist/quill.snow.css";
 
 @import "tailwindcss";
 
 
 .open-sns {
     font-family: "Open Sans", serif;
+}
+.roboto {
+    font-family: "Roboto", serif;
 }
 .calender .react-datepicker {
     display: flex !important;
@@ -80,6 +85,33 @@
 input[type="checkbox"]:checked {
     color: #4CAF50;
     border: 1px solid #4CAF50;
+}
+
+
+.date .react-datepicker {
+    background-color: #578d6c !important;
+  }
+  
+.date .react-datepicker__header {
+    background-color: #578d6c !important;
+    color: white !important;
+  }
+  .paragraph {
+    margin-top:10px;
+    margin-bottom: 10px;
+    font-family: "Roboto", serif;
+    color: #555555;
+    line-height: 24px;
+  }
+  .description {
+    font-family: "Roboto", serif;
+    color: #555555;
+    line-height: 24px;
+  }
+  input[type="checkbox"] {
+    accent-color: #729273;
+    color:white
+    /* Green color */
 }
 
   

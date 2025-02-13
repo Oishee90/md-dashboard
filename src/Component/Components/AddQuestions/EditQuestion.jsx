@@ -1,8 +1,18 @@
 import { useState } from "react";
-
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 const EditQuestion = ({onClose}) => {
       const [name, setName] = useState("");
+       const handlePublish = () => {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Your action has been published successfully.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            timer: 3000 // Auto-close after 3 seconds
+          });
+        };
+     
     return (
         <div className="fixed inset-0 bg-black/10 backdrop-blur-sm flex items-center justify-center">
         <div className="relative bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
@@ -31,12 +41,12 @@ const EditQuestion = ({onClose}) => {
   
 
           {/* Action Buttons */}
-          <div className="flex justify-start space-x-2">
+          <div onClick={handlePublish} className="flex justify-start space-x-2">
           
-            <button className="bg-[#8CAB91] text-white px-4 py-2 rounded-3xl">
-            Publish
-            </button>
-          </div>
+          <button className="bg-[#8CAB91] text-white px-4 py-2 rounded-3xl cursor-pointer ">
+          Publish
+          </button>
+        </div>
         </div>
       </div>
     );

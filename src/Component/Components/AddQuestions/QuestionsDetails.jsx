@@ -7,17 +7,19 @@ import { NavLink, useParams } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import Addquestion from "./Addquestion";
 import EditQuestion from "./EditQuestion";
+import Delete from "../MakeAdmin/Delete";
 
 const QuestionsDetails = () => {
     const { id } = useParams(); 
 
-
+    const [selectedId, setSelectedId] = useState(null);
     const [openModal, setOpenModal] = useState("");
     const [selectedSection, setSelectedSection] = useState(null);
   
-    const toggleModal = (modalName, section = null) => {
+    const toggleModal = (modalName, section, id = null) => {
       setOpenModal(openModal === modalName ? "" : modalName);
       setSelectedSection(section);
+      setSelectedId( id)
     };
   
     return (
@@ -53,7 +55,7 @@ const QuestionsDetails = () => {
                 onClick={() => toggleModal("edit", { id: 1, name: "Childhood" })}
                 className="w-[24px] h-[24px] font-normal text-[#212121] cursor-pointer"
               />
-              <AiOutlineDelete className="w-[24px] h-[24px] font-normal text-[#212121] cursor-pointer" />
+              <AiOutlineDelete  onClick={() => toggleModal("delete", id)}  className="w-[24px] h-[24px] font-normal text-[#212121] cursor-pointer" />
             </div>
           </div>
         </div>
@@ -63,6 +65,7 @@ const QuestionsDetails = () => {
           <>
             {openModal === "add" && <Addquestion onClose={() => setOpenModal("")}></Addquestion>}
             {openModal === "edit" &&  <EditQuestion section={selectedSection} onClose={() => setOpenModal("")}></EditQuestion>}
+            {openModal === "delete" &&  <Delete id={selectedId} onClose={() => setOpenModal("")}></Delete>}
           </>
         )}
       </div>

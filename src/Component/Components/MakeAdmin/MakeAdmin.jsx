@@ -33,6 +33,7 @@ const MakeAdmin = () => {
           userType: "Admin",
         },
       ];
+           
     return (
           <div className="container mx-auto">
                    {/* Header */}
@@ -71,7 +72,7 @@ const MakeAdmin = () => {
                   
                 
                      <td className="py-2 px-6  text-left text-[#707070]">
-                          <AiOutlineDelete  onClick={() => toggleModal("delete", subscriber.id)}  className="w-[24px] h-[24px] font-normal text-red-500" />
+                          <AiOutlineDelete  onClick={() => toggleModal("delete", subscriber.id)}  className="w-[24px] h-[24px] cursor-pointer font-normal text-red-500" />
                      </td>
                    </tr>
                  ))}
